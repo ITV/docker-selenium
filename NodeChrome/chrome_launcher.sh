@@ -4,6 +4,13 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+# Hack to add nginx proxy to node
+export NGINX_IP=$(getent hosts nginx-proxy | awk '{ print $1 }')
+cp /etc/hosts /tmp/
+sudo sed -i -e "s/SUB_ME/$NGINX_IP/g" /tmp/hosts
+# can't replace hosts file inplace
+sudo cp /tmp/hosts /etc/hosts
+
 # Let the wrapped binary know that it has been run through the wrapper.
 export CHROME_WRAPPER="`readlink -f "$0"`"
 
