@@ -1,0 +1,23 @@
+version: '2'
+services:
+  hub:
+    image: selenium/hub
+    ports:
+      - "11000:4444"
+    environment:
+      no_proxy: localhost
+      HUB_ENV_no_proxy: localhost
+  chrome:
+    image: selenium/node-chrome-debug
+    environment:
+      no_proxy: localhost
+      HUB_ENV_no_proxy: localhost
+      HUB_PORT_4444_TCP_ADDR: hub
+      HUB_PORT_4444_TCP_PORT: 4444
+    ports:
+      - "11001:5900"
+    depends_on:
+      - "hub"
+    links:
+      - "hub"
+    shm_size: 512m
