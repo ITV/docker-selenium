@@ -13,8 +13,16 @@ USER root
 #       google-chrome-beta  (pull latest beta)
 #============================================
 ENV CHROME_VERSION "google-chrome-stable"
+
+# set up auth for the remote repo (we use artifactory as google doens't keep old chrome packages
+ARG ARTIFACTORY_USERNAME
+ARG ARTIFACTORY_PASSWORD
+ARG ARTIFACTORY_ENDPOINT
+ENV ARTIFACTORY_USERNAME=$ARTIFACTORY_USERNAME
+ENV ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD
+ENV ARTIFACTORY_ENDPOINT=$ARTIFACTORY_ENDPOINT
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-  && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
+  && echo "deb http://$ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD@$ARTIFACTORY_ENDPOINT stable main" >> /etc/apt/sources.list.d/google-chrome.list \
   && apt-get update -qqy \
   && apt-get -qqy install \
     ${CHROME_VERSION:-google-chrome-stable} \
