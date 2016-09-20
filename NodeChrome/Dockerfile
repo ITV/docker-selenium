@@ -21,8 +21,9 @@ ARG ARTIFACTORY_ENDPOINT
 ENV ARTIFACTORY_USERNAME=$ARTIFACTORY_USERNAME
 ENV ARTIFACTORY_PASSWORD=$ARTIFACTORY_PASSWORD
 ENV ARTIFACTORY_ENDPOINT=$ARTIFACTORY_ENDPOINT
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-  && echo "deb http://$ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD@$ARTIFACTORY_ENDPOINT stable main" >> /etc/apt/sources.list.d/google-chrome.list \
+RUN apt-get update -qqy && apt-get -qqy install apt-transport-https \
+  && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+  && echo "deb https://$ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD@$ARTIFACTORY_ENDPOINT stable main" >> /etc/apt/sources.list.d/google-chrome.list \
   && apt-get update -qqy \
   && apt-get -qqy install \
     ${CHROME_VERSION:-google-chrome-stable} \
