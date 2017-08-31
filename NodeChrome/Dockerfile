@@ -33,7 +33,7 @@ RUN apt-get update -qqy && apt-get -qqy install apt-transport-https \
 #==================
 # Chrome webdriver
 #==================
-ENV CHROME_DRIVER_VERSION 2.23
+ENV CHROME_DRIVER_VERSION 2.24
 RUN wget --no-verbose -O /tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip \
   && rm -rf /opt/selenium/chromedriver \
   && unzip /tmp/chromedriver_linux64.zip -d /opt/selenium \
