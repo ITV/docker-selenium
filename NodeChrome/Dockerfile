@@ -1,5 +1,5 @@
-#FROM selenium/node-base:2.53.0
-FROM selenium/node-base:3.5.2-antimony
+FROM selenium/node-base:2.53.0
+#FROM selenium/node-base:3.5.2-antimony
 MAINTAINER Selenium <selenium-developers@googlegroups.com>
 USER root
 
