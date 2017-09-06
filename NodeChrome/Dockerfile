@@ -13,7 +13,7 @@ USER root
 #       latest (equivalent to google-chrome-stable)
 #       google-chrome-beta  (pull latest beta)
 #============================================
-ENV CHROME_VERSION "google-chrome-stable=60.0.3112.113-1"
+ENV CHROME_VERSION "google-chrome-stable"
 
 # set up auth for the remote repo (we use artifactory as google doens't keep old chrome packages
 ARG ARTIFACTORY_USERNAME
