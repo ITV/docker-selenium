@@ -3,7 +3,7 @@
     {
       "browserName": "*googlechrome",
       "maxInstances": 1,
-      "seleniumProtocol": "Selenium"
+      "seleniumProtocol": "WebDriver"
     },
     {
       "browserName": "chrome",
