@@ -31,10 +31,6 @@ RUN apt-get update -qqy && apt-get -qqy install apt-transport-https \
   && rm /etc/apt/sources.list.d/google-chrome.list \
   && rm -rf /var/lib/apt/lists/*
 
-COPY google-chrome-stable_61.0.3163.79-1_amd64.deb /opt
-
-RUN apt-get install /opt/google-chrome-stable_61.0.3163.79-1_amd64.deb
-
 #==================
 # Chrome webdriver
 #==================
